@@ -27,3 +27,15 @@ extract.file <- function(tar.file, extract.file, new.file, resultsdir) {
   # remove untared directory
   unlink(dirname(x.file), recursive = TRUE)
 }
+
+
+## Extraction of participants
+#' Participant extraction 
+#' This function will extract participants 
+#' @param id TCGA barcode
+#' @return participant ID
+#' @export
+
+extract.participant <- function(id) {
+  sub("TCGA-[^-]+-([^-]+)-.*", "\\1", id)
+}
