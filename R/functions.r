@@ -1,15 +1,24 @@
+#' File extraction 
+#' Extracts the TCGA tar.gz to a named output 
+
+#' @param tar.file tar.gz file containing TCGA
+#' @param extract.file file which enables the extraction 
+#' @param new.file name of desired output file
+#' @param resultsdir location of desired output file
+#' @return A new extracted file in the specified location 
+
 ## function for extracting tcga tar.gz's to named output
 extract.file <- function(tar.file, extract.file, new.file, resultsdir) {
   # get file path to extracted file
   x.file <-
     grep(extract.file,
-      untar(tar.file, list = T),
+      utils::untar(tar.file, list = T),
       value = T
     )
     
   # extract the tar file
   cat("Extracting", tar.file, "to", new.file, "\n")
-  untar(tar.file, exdir=resultsdir, extras="--no-same-owner")
+  utils::untar(tar.file, exdir=resultsdir, extras="--no-same-owner")
   x.file = file.path(resultsdir,x.file)
 
   # move the data to named output
